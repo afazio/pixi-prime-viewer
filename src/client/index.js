@@ -9,7 +9,11 @@ import { combineReducers } from 'redux-immutablejs';
 import reducers from 'reducers';
 import App from 'containers/App';
 
-var store = applyMiddleware(thunk, createLogger())(createStore)(combineReducers(reducers));
+const logger = createLogger({
+  transformer: (state) => state.toJS()
+});
+
+const store = applyMiddleware(thunk, logger)(createStore)(combineReducers(reducers));
 
 render(
   <Provider store={store}>

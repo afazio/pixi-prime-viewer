@@ -6,8 +6,18 @@ export const initialState = Immutable.Map({
   height: 600
 });
 
+export const actions = {
+  CHANGE_CANVAS: 'CHANGE_CANVAS'
+};
+
+export const actionCreators = {
+  changeCanvasSize: (width, height) => {
+    return {type: actions.CHANGE_CANVAS, width, height};
+  },
+}
+
 export default createReducer(initialState, {
-  'CHANGE_CANVAS': (domain, {width, height}) => {
+  [actions.CHANGE_CANVAS]: (domain, {width, height}) => {
     return domain.merge({width, height});
   }
 });
