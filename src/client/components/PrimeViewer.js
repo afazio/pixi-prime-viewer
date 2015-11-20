@@ -115,7 +115,11 @@ export default class PrimeViewer extends React.Component {
   }
 
   drawNext(number) {
-    const color = this.isPrime(number) ? 0x0000FF : 0xFF0000;
+    const blackAndYellow = [0x000000, 0xFFE20B];
+    const redAndBlue = [0xFF0000, 0x0000FF];
+    const theme = redAndBlue;
+
+    const color = this.isPrime(number) ? theme[1] : theme[0];
     this.drawNumber(number, color, this.x, this.y, this.numberSize);
 
     if (this.current == this.max[this.direction]) {
