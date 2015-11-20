@@ -2,8 +2,8 @@ import { createReducer } from 'redux-immutablejs';
 import Immutable from 'immutable';
 
 export const initialState = Immutable.Map({
-  width: 800,
-  height: 600
+  width: window.innerWidth,
+  height: window.innerHeight
 });
 
 export const actions = {
