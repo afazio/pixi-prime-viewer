@@ -90,9 +90,11 @@ export default class PrimeViewer extends React.Component {
     this.max = [1, 1, 2, 2];
 
     this.direction = this.RIGHT;
-    this.numberSize = 25;
+    this.numberSize = 50;
 
     this.scaleAmount = 0.998
+
+    this.texts = [];
 
     window.requestAnimationFrame(this.animate.bind(this));
   }
@@ -100,6 +102,16 @@ export default class PrimeViewer extends React.Component {
   drawNumber(number, color, x, y, size) {
     this.graphics.beginFill(color, 1);
     this.graphics.drawRect(x, y, size, size);
+
+    if (number < 20) {
+      const text = new Pixi.Text(''+number, { font: (this.numberSize / 2)+'px Snippet', fill: 'white', align: 'left' });
+      text.position.x = x + this.numberSize / 2;
+      text.position.y = y + this.numberSize / 2;
+      text.anchor.x = 0.5;
+      text.anchor.y = 0.5;
+      this.texts.push(text);
+      this.graphics.addChild(text);
+    }
   }
 
   drawNext(number) {
@@ -114,13 +126,13 @@ export default class PrimeViewer extends React.Component {
     
     switch(this.direction) {
     case this.RIGHT:
-      this.x +=  25; break;
+      this.x +=  this.numberSize; break;
     case this.UP:
-      this.y += -25; break;
+      this.y += -this.numberSize; break;
     case this.LEFT:
-      this.x += -25; break;
+      this.x += -this.numberSize; break;
     case this.DOWN:
-      this.y +=  25; break;
+      this.y +=  this.numberSize; break;
     }
     
     this.current += 1;
@@ -132,7 +144,7 @@ export default class PrimeViewer extends React.Component {
 
     this.graphicsScale = (this.graphicsScale || 1.0) * this.scaleAmount;
     
-    if (this.graphicsScale < 0.1) 
+    if (this.graphicsScale < 0.05) 
       this.scaleAmount = Math.min(this.scaleAmount + 0.00001, 1);
 
     this.numberContainer.scale.set(this.graphicsScale);
@@ -140,6 +152,14 @@ export default class PrimeViewer extends React.Component {
     this.graphics.rotation += 0.0001
 
     numbersToShow.forEach(this.drawNext.bind(this));
+
+    if (numbersToShow.size && numbersToShow.get(0) >= 8) {
+      this.startFadingText = true;
+    }
+
+    if (this.startFadingText === true && this.texts[this.texts.length-1].alpha > 0) {
+      this.texts.forEach((text) => text.alpha -= 0.01);
+    }
 
     this.renderer.render(this.stage);
     window.requestAnimationFrame(this.animate.bind(this));
