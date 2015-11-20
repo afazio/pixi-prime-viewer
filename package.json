@@ -1,8 +1,8 @@
 {
-  "name": "primes",
+  "name": "pixi-primes-viewer",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "View prime numbers in a unique way and discover hints of a pattern in their distribution",
+  "main": "public/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --content-base public --progress --colors --watch --inline --config config/webpack.config.babel.js",
