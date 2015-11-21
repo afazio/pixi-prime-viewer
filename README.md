@@ -1,6 +1,7 @@
 # pixi-prime-viewer
 
-View prime numbers in a unique way and discover hints of a pattern in their distribution.
+View prime numbers in a unique way and discover hints of a pattern in their distribution.  View it
+in action [here](http://afaz.io/pixi-prime-viewer/)!
 
 ### Install
 
