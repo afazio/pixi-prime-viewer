@@ -115,7 +115,7 @@ export default class PrimeViewer extends React.Component {
     this.LEFT = 2;
     this.DOWN = 3;
 
-    // maximum numbers we can do in various directions (RIGHT, UP, ...);  These get updated.
+    // maximum blocks we can draw in various directions (RIGHT, UP, ...);  These get updated.
     this.max = [1, 1, 2, 2];
     this.current = 0;
 
