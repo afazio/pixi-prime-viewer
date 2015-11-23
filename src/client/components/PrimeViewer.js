@@ -198,6 +198,9 @@ export default class PrimeViewer extends React.Component {
   drawNext(number) {
     const blackAndYellow = [0x000000, 0xFFE20B];
     const redAndBlue = [0xFF0000, 0x0000FF];
+    const blueAndGreen = [0x0000FF, 0x00FF00];
+    const greenAndYellow = [0x00FF00, 0xFFE20B];
+    const whiteAndPurple = [0xFFFFFF, 0x551A8B];
     const theme = redAndBlue;
 
     // Draw this block
